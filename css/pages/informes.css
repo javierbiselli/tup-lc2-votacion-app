@@ -1,0 +1,140 @@
+.boton-inicio-container {
+  width: 100%;
+  text-align: end;
+  margin-right: 5px;
+}
+
+.boton-generales {
+  background-color: var(--gris-claro);
+}
+
+i {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.carteles div {
+  width: 400px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+
+div p {
+  color: white;
+}
+
+.carteles div:first-child {
+  background-color: var(--mensaje-usuario-verde);
+}
+
+.carteles div:nth-child(2) {
+  background-color: var(--mensaje-usuario-rojo);
+}
+
+.carteles div:nth-child(3) {
+  background-color: var(--mensaje-usuario-amarillo);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grilla {
+  width: 1024px;
+  margin: 0 auto 50 auto;
+  border: 1px solid var(--borde-Grilla);
+  border-radius: 15px;
+  background-color: rgb(250, 250, 250);
+  margin-bottom: 50px;
+}
+
+thead tr th {
+  text-align: center;
+  color: var(--titulo-Grilla);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--borde-inferior-Grilla);
+}
+
+tbody tr td:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+td {
+  background-color: rgb(255, 255, 255);
+  padding: 15px;
+  font-size: 12px;
+  text-align: center;
+  vertical-align: top;
+}
+
+td svg {
+  height: 250px;
+}
+
+.texto-elecciones-chico {
+  font-size: 12px;
+  color: var(--textos);
+  font-weight: bold;
+}
+
+.texto-path-chico {
+  font-size: 11px;
+  color: var(--celeste);
+}
+
+.main-cards {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin: 2px;
+  width: 120px;
+  height: 70px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 10px;
+}
+
+.card div p {
+  color: white;
+}
+
+.card div p:first-child {
+  font-weight: bold;
+}
+
+.card:first-child {
+  background-color: var(--celeste);
+}
+
+.card:nth-child(2) {
+  background-color: var(--magenta);
+}
+
+.card:nth-child(3) {
+  background-color: var(--morado);
+}
+
+.agrupacion-texto {
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+}
+
+.agrupacion-texto h3,
+.agrupacion-texto p {
+  font-size: 10px;
+  color: var(--textos);
+}
