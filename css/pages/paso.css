@@ -17,17 +17,6 @@ header ul {
   padding: 0 10px;
 }
 
-.boton-filtrar {
-  background-color: white;
-  border: none;
-  border-radius: 15px;
-  padding: 5px 15px;
-  color: var(--textos);
-  font-size: 14px;
-  text-transform: uppercase;
-  text-align: center;
-}
-
 i {
   font-size: 16px;
   margin-right: 10px;

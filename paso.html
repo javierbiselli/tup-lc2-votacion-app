@@ -29,25 +29,33 @@
       <!--Barra de menú principal-->
       <ul>
         <li>
-          <label>Año</label>
-          <select></select>
+          <select class="selectAnio" onchange="llenarSelectCargo()">
+            <option>Año</option>
+          </select>
         </li>
         <li>
-          <label>Cargo</label>
-          <select></select>
+          <select class="selectCargo">
+            <option>Cargo</option>
+          </select>
         </li>
         <li>
-          <label>Distrito</label>
-          <select></select>
+          <select class="selectDistrito">
+            <option>Distrito</option>
+          </select>
         </li>
-        <li>
-          <a href="#" class="boton-filtrar"
-            ><i class="fa-solid fa-magnifying-glass"></i>FILTRAR</a
-          >
-        </li>
+        <div class="boton-filtrar-container">
+          <li>
+            <a href="#" class="boton-filtrar"
+              ><i class="fa-solid fa-magnifying-glass"></i>FILTRAR</a
+            >
+          </li>
+        </div>
         <li><a href="generales.html" class="boton-generales">GENERALES</a></li>
-        <li><a href="informes.html">INFORMES</a></li>
+        <li><a href="informes.html" class="boton-informes">INFORMES</a></li>
         <!-- <li><a href="#contact">Contacto</a></li>  no aparece esto en el pdf-->
+        <div class="boton-inicio-container">
+          <li><a class="boton-inicio" href="index.html">INICIO</a></li>
+        </div>
       </ul>
     </header>
     <!-- Contenido principal de la página -->
@@ -378,4 +386,6 @@
       </p>
     </footer>
   </body>
+  <script src="js/common.js"></script>
+  <script src="js/pages/paso.js"></script>
 </html>

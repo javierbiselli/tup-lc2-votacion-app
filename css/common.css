@@ -54,7 +54,6 @@ header ul {
   padding: 0;
   display: flex;
   gap: 10px;
-  justify-content: flex-start;
   align-items: center;
   height: 45px;
 }
@@ -71,16 +70,62 @@ header ul li p {
 .boton-generales {
   background-color: var(--magenta);
   border-radius: 5px;
-  padding: 8px 20px;
+  padding: 10px 20px;
   color: white;
   text-transform: uppercase;
   text-align: center;
   border: none;
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .boton-generales {
   background-color: var(--celeste);
+}
+
+.selectCargo {
+  max-width: 300px;
+}
+
+.boton-filtrar-container {
+  width: 100px;
+}
+
+.boton-filtrar-container li {
+  width: 100%;
+}
+
+.boton-filtrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 8px 15px;
+  color: var(--textos);
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  width: 70px;
+}
+
+.boton-inicio-container {
+  width: 100%;
+}
+
+.boton-inicio {
+  background-color: var(--gris-claro);
+  border-radius: 5px;
+  padding: 8px 20px;
+  color: white;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  float: right;
+}
+
+header ul li a {
+  text-decoration: none;
 }
 
 .boton-paso:hover,
@@ -89,14 +134,14 @@ header ul li a:hover {
   background-color: var(--gris-claro);
 }
 
-header ul li a {
-  text-decoration: none;
+.boton-informes {
   color: white;
   text-align: center;
   text-transform: uppercase;
   border: 1px solid white;
   border-radius: 15px;
-  padding: 5px 15px;
+  padding: 9px 15px;
+  font-size: 10px;
 }
 
 .sec-titulo-container {
@@ -186,4 +231,40 @@ footer p {
   color: var(--texto-footer);
   width: 60%;
   line-height: 25px;
+}
+
+#success,
+#error,
+#warning {
+  display: none;
+  position: relative;
+  right: 0;
+}
+
+.carteles {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.carteles div {
+  width: 400px;
+  margin: 0;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+
+.carteles div:first-child {
+  background-color: var(--mensaje-usuario-verde);
+}
+
+.carteles div:nth-child(2) {
+  background-color: var(--mensaje-usuario-rojo);
+}
+
+.carteles div:nth-child(3) {
+  background-color: var(--mensaje-usuario-amarillo);
 }
