@@ -268,3 +268,113 @@ footer p {
 .carteles div:nth-child(3) {
   background-color: var(--mensaje-usuario-amarillo);
 }
+
+.overlay {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #222;
+  opacity: 0.8;
+}
+
+.overlay__inner {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.overlay__content {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner {
+  width: 75px;
+  height: 75px;
+  display: inline-block;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0.05);
+  border-top-color: #fff;
+  animation: spin 1s infinite linear;
+  border-radius: 100%;
+  border-style: solid;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#loader {
+  display: none;
+}
+
+/* cuando definimos el gráfico en horizontal, lo giramos 90 grados */
+.chart-wrap.horizontal .grid {
+  transform: rotate(-90deg);
+}
+.chart-wrap.horizontal .bar::after {
+  /* giramos las letras para horizontal*/
+  transform: rotate(45deg);
+  padding-top: 0px;
+  display: block;
+}
+.chart-wrap .grid {
+  position: relative;
+  padding: 5px 0 5px 0;
+  height: 100%;
+  width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 2px solid var(--grid-color);
+  font-size: 10px;
+}
+/* posicionamos el % del gráfico*/
+.chart-wrap .grid::before {
+  font-size: 0.8em;
+  font-weight: bold;
+  position: absolute;
+  left: -0.5em;
+  top: -1.5em;
+}
+.chart-wrap .grid::after {
+  font-size: 0.8em;
+  font-weight: bold;
+  position: absolute;
+  right: -1.5em;
+  top: -1.5em;
+}
+/* giramos las valores de 0% y 100% para horizontal */
+.chart-wrap.horizontal .grid::before,
+.chart-wrap.horizontal .grid::after {
+  transform: rotate(90deg);
+}
+/* LAS VARIABLES PARA DARLE ESTILO A LAS BARRAS NO EXISTEN!!, POR ESO NO SE VEN COMO DEBERIAN */
+.chart-wrap .bar {
+  width: var(--bar-value);
+  height: var(--bar-thickness);
+  margin: var(--bar-spacing) 0;
+  background-color: var(--celeste);
+  border-radius: 0 var(--bar-rounded) var(--bar-rounded) 0;
+  margin: 10px 0;
+}
+
+.chart-wrap .bar:hover {
+  opacity: 0.7;
+}
+.chart-wrap .bar::after {
+  content: attr(data-name);
+  margin-left: 100%;
+  padding: 10px;
+  display: inline-block;
+  white-space: nowrap;
+}

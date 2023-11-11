@@ -1,6 +1,8 @@
 const tipoEleccion = 1;
 const tipoRecuento = 1;
 
+const loader = document.getElementById("loader");
+
 const mensajeVerde = document.getElementById("success");
 const mensajeAmarillo = document.getElementById("warning");
 const mensajeRojo = document.getElementById("error");
@@ -231,6 +233,8 @@ function borrarSelects() {
   }
 }
 
+var dataResponse;
+
 async function filtrarResultados() {
   const anioEleccion = selectAnio.value;
   const categoriaId = selectCargo.value;
@@ -274,13 +278,17 @@ async function filtrarResultados() {
   }
 
   try {
+    loader.style.display = "block";
     const response = await fetch(
       `https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`
     );
 
     if (response.ok) {
       const data = await response.json();
+      loader.style.display = "none";
       console.log("Respuesta:", data);
+
+      dataResponse = data;
       mensajeAmarillo.style.display = "none";
       pasos.style.visibility = "visible";
 
@@ -302,7 +310,10 @@ async function filtrarResultados() {
 
       mesasEscrutadas.innerText = data.estadoRecuento.mesasTotalizadas;
       electores.innerText = data.estadoRecuento.cantidadElectores;
-      participacion.innerText = `%${data.estadoRecuento.participacionPorcentaje}`;
+      participacion.innerText = `${data.estadoRecuento.participacionPorcentaje}%`;
+
+      llenarAgrupacionPolitica();
+      llenarResumenVotos();
 
       const mapa = mapas.find(
         (mapas) =>
@@ -377,4 +388,115 @@ function agregarAInforme() {
       mensajeVerde.style.display = "none";
     }, 4000);
   }
+}
+
+function llenarAgrupacionPolitica() {
+  let i = 0;
+
+  const agrupacionHtml = document.getElementsByClassName("agrupaciones")[0];
+
+  agrupacionHtml.innerHTML = "";
+
+  let agrupaciones = dataResponse.valoresTotalizadosPositivos;
+
+  agrupaciones.forEach((agrupacion) => {
+    const divAgrupacion = document.createElement("div");
+
+    divAgrupacion.classList.add("agrupacion");
+
+    agrupacionHtml.appendChild(divAgrupacion);
+
+    const nombreAgrupacion = document.createElement("h3");
+
+    nombreAgrupacion.innerText = agrupacion.nombreAgrupacion;
+
+    divAgrupacion.appendChild(nombreAgrupacion);
+
+    const separador = document.createElement("div");
+    separador.classList.add("separador");
+
+    divAgrupacion.appendChild(separador);
+
+    const agrupacionTexto = document.createElement("div");
+    agrupacionTexto.classList.add("agrupacion-texto");
+
+    divAgrupacion.appendChild(agrupacionTexto);
+
+    agrupacion.listas.forEach((lista) => {
+      const separacion = document.createElement("div");
+      separacion.classList.add("agrup-ind");
+      agrupacionTexto.appendChild(separacion);
+
+      const h3 = document.createElement("h3");
+      h3.innerText = lista.nombre;
+
+      separacion.appendChild(h3);
+
+      const div = document.createElement("div");
+      separacion.appendChild(div);
+
+      const votosPorcentaje = document.createElement("p");
+      votosPorcentaje.innerText = `${(
+        (lista.votos * 100) /
+        agrupacion.votos
+      ).toFixed(2)}%`;
+
+      const votos = document.createElement("p");
+      votos.innerText = `${lista.votos} VOTOS`;
+
+      div.appendChild(votosPorcentaje);
+      div.appendChild(votos);
+
+      const barra = document.createElement("div");
+      barra.classList.add("progress");
+      console.log(colores);
+      console.log(i);
+      barra.style.backgroundColor = colores[i].colorLiviano;
+      agrupacionTexto.appendChild(barra);
+      barra.innerHTML = `
+  <div
+    class="progress-bar"
+    style="width: ${((lista.votos * 100) / agrupacion.votos).toFixed(
+      2
+    )}%; background: ${colores[i].colorPleno}"
+  >
+    <span class="progress-bar-text">${(
+      (lista.votos * 100) /
+      agrupacion.votos
+    ).toFixed(2)}%</span>
+  </div>
+`;
+    });
+
+    i = i + 1;
+  });
+}
+
+function llenarResumenVotos() {
+  let i = 0;
+  let agrupaciones = dataResponse.valoresTotalizadosPositivos;
+
+  let grid = document.getElementsByClassName("grid")[0];
+
+  grid.innerHTML = "";
+
+  agrupaciones.forEach((agrupacion) => {
+    if (i < 7) {
+      const barra = document.createElement("div");
+      barra.classList.add("bar");
+
+      barra.style.setProperty("--bar-value", `${agrupacion.votosPorcentaje}%`);
+      barra.style.backgroundColor = colores[i].colorPleno;
+      barra.setAttribute("data-name", agrupacion.nombreAgrupacion);
+      barra.setAttribute(
+        "title",
+        `${agrupacion.nombreAgrupacion} ${agrupacion.votosPorcentaje}%`
+      );
+
+      grid.appendChild(barra);
+
+      i = i + 1;
+    }
+  });
+  i = 0;
 }
