@@ -349,6 +349,11 @@ function pantallaInicio() {
 pantallaInicio();
 
 function agregarAInforme() {
+  const opcionSeleccionadaCargo =
+    selectCargo.options[selectCargo.selectedIndex];
+  const opcionSeleccionadaDist =
+    selectDistrito.options[selectDistrito.selectedIndex];
+
   const nuevoRegistro = {
     vAnio: selectAnio.value,
     vTipoRecuento: tipoRecuento,
@@ -357,6 +362,9 @@ function agregarAInforme() {
     vDistrito: selectDistrito.value,
     vSeccionProvincial: hdSeccionProvincial.value,
     vSeccionID: selectSeccion.value,
+    provincia: opcionSeleccionadaDist.text,
+    cargo: opcionSeleccionadaCargo.text,
+    tipoEleccion: "Paso",
   };
 
   const informesExistenteJSON = localStorage.getItem("INFORMES");
