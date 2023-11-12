@@ -76,6 +76,11 @@ td {
   vertical-align: top;
 }
 
+.mapa svg {
+  width: 300px;
+  height: 500px px;
+}
+
 td svg {
   height: 250px;
 }
