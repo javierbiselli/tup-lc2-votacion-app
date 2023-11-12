@@ -324,13 +324,12 @@ async function filtrarResultados() {
       const svg = document.getElementsByClassName("mapa-svg")[0];
       provincia.innerText = mapa.provincia;
       svg.innerHTML = mapa.svg;
-      // Implementa tu lógica para manejar los datos obtenidos en tu interfaz de usuario
     } else {
       console.error("Error:", response);
+      loader.style.display = "none";
+      mensajeRojo.innerHTML = `<p><i class="fa-solid fa-triangle-exclamation"></i>Error al ejecutar la solicitud: estado: ${response.status}</p>`;
       mensajeRojo.style.display = "block";
-      setTimeout(() => {
-        mensajeAmarillo.style.display = "none";
-      }, 4000);
+      mensajeAmarillo.style.display = "none";
     }
   } catch (error) {
     console.error("Error en la consulta:", error);

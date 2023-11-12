@@ -1,6 +1,7 @@
 const loader = document.getElementById("loader");
 
 const mensajeAmarillo = document.getElementById("warning");
+const mensajeRojo = document.getElementById("error");
 
 const main = document.getElementsByClassName("main")[0];
 
@@ -15,7 +16,7 @@ async function pantallaInicio() {
 
     try {
       for (const informe of informes) {
-        loader.style.display = "none";
+        loader.style.display = "block";
         const tbody = document.getElementById("contenedor-informes");
 
         const response = await fetch(
@@ -293,6 +294,14 @@ async function pantallaInicio() {
             div.appendChild(votosPorcentaje);
             div.appendChild(votos);
           });
+        } else {
+          console.error("Error:", response);
+          loader.style.display = "none";
+          mensajeRojo.innerHTML = `<p><i class="fa-solid fa-triangle-exclamation"></i>Error al ejecutar la solicitud: estado: ${response.status}</p>`;
+          mensajeRojo.style.display = "block";
+          setTimeout(() => {
+            mensajeAmarillo.style.display = "none";
+          }, 4000);
         }
       }
     } catch (error) {
